@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="title_container">
+            <p class="text">Create new study set</p>
+            <div class="create_button" onclick="createTable()"><p>Create</p></div>
+        </div>
+        <input id="title" type="text" placeholder="Title">
+        <div id="question_container">
+        </div>
+
+        <aside class="add/remove">
+            <p id="add_button" onclick="add_field()">+</p>
+            <p id="remove_button" onclick="remove_field()">-</p>
+        </aside>
+    </main>
+</body>
+</html>

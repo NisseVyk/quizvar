@@ -1,0 +1,65 @@
+@font-face { font-family: quizlet400; src: url('400.woff2'); }
+@font-face { font-family: quizlet700; src: url('700.woff2'); }
+
+::placeholder {
+    color: #878fa3;
+}
+
+body {
+    font-family: quizlet700;
+    background-color: rgb(10, 9, 45);
+}
+
+input {
+    border: none;
+}
+input:focus {
+    border: none;
+    outline: none;
+}
+
+.title_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text {
+    font-size: 1.25rem;
+    color: rgb(246, 247, 251);
+}
+
+.create_button {
+    display: flex;
+    align-items: center;
+    background-color: rgb(66, 85, 255);
+    color: #fff;
+    width: 76px;
+    height: 40px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.create_button p {
+    width: 100%;
+    
+    text-align: center;
+}
+
+#title {
+    background-color: rgb(46, 56, 86);
+    color: rgb(246, 247, 251);
+}
+
+
+
+main {
+    width: 70vw;
+    max-width: 1220px;
+    margin: auto;
+}
+
+.question {
+    
+}
