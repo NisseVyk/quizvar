@@ -6,20 +6,28 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    
 </head>
 <body>
+    <div style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg">
+            <symbol id="garbage" viewBox="0 0 24 24">
+                <path d="M17.0089 9.00152V20H6.99849V9.00152H17.0089ZM15.2929 2.29289C15.1054 2.10536 14.851 2 14.5858 2H9.41421C9.149 2 8.89464 2.10536 8.70711 2.29289L8 3H4C3.44772 3 3 3.44772 3 4C3 4.55228 3.44772 5 4 5H20C20.5523 5 21 4.55228 21 4C21 3.44772 20.5523 3 20 3H16L15.2929 2.29289ZM19 8C19 7.44772 18.5523 7 18 7H6C5.44772 7 5 7.44772 5 8V19.7778C5 21 6.44286 22 7.85714 22H16.1429C17.5571 22 19 21 19 19.7778V8Z"></path>
+            </symbol>
+        </svg>
+    </div>
     <main>
-        <div class="title_container">
+        <svg role="img"><use xlink:href="#garbage"></use></svg>
+        <div class="info_container">
             <p class="text">Create new study set</p>
             <div class="create_button" onclick="createTable()"><p>Create</p></div>
         </div>
-        <input id="title" type="text" placeholder="Title">
+        <input class="title" id="title" type="text" placeholder="Title">
         <div id="question_container">
         </div>
 
-        <aside class="add/remove">
-            <p id="add_button" onclick="add_field()">+</p>
-            <p id="remove_button" onclick="remove_field()">-</p>
+        <aside class="addremove_container" onclick="add_field()">
+            <span class="button" id="add_button">+ ADD CARD</span>
         </aside>
     </main>
 </body>

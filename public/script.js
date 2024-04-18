@@ -16,10 +16,34 @@ function createTable() {
 }
 
 function add_field() {
+
+    // Main div
     let question = document.createElement("div")
     question.classList.add("question")
     question.id = question_container.children.length.toString()
     
+    // Övre bar
+    let remove_button_container = document.createElement("div")
+    remove_button_container.classList.add("remove_button_container")
+
+    // Siffra
+    let siffra = document.createElement("p")
+    siffra.classList.add("siffra")
+
+    // Ta bort knapp
+    let trash_can = document.createElement("svg")
+    //trash_can.classList.add("trash_can")
+    trash_can.setAttribute('role', "img")
+
+    let inner_trash = document.createElement("use")
+    inner_trash.setAttribute('xlink:href', "#garbage")
+
+    trash_can.appendChild(inner_trash)
+
+    // Nedre bar
+    let term_container = document.createElement("div")
+    term_container.classList.add("term_container")
+
     const input = document.createElement("input")
     input.type = "text"
     input.classList.add("question_input")
@@ -27,6 +51,7 @@ function add_field() {
     question.appendChild(input)
     question.appendChild(input.cloneNode(true))
 
+    question_container.appendChild(trash_can)
     question_container.appendChild(question);
 }
 
