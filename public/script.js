@@ -17,10 +17,11 @@ function createTable() {
 
 function add_field() {
 
+    const question_number = question_container.children.length
+
     // Main div
     let question = document.createElement("div")
     question.classList.add("question")
-    question.id = question_container.children.length.toString()
     
     // Övre bar
     let remove_button_container = document.createElement("div")
@@ -29,16 +30,15 @@ function add_field() {
     // Siffra
     let siffra = document.createElement("p")
     siffra.classList.add("siffra")
+    siffra.innerHTML = question_number + 1
+    remove_button_container.appendChild(siffra)
 
     // Ta bort knapp
-    let trash_can = document.createElement("svg")
-    //trash_can.classList.add("trash_can")
-    trash_can.setAttribute('role', "img")
-
-    let inner_trash = document.createElement("use")
-    inner_trash.setAttribute('xlink:href', "#garbage")
-
-    trash_can.appendChild(inner_trash)
+    let trash_can = document.createElement("img")
+    trash_can.classList.add("trash_can")
+    trash_can.setAttribute('src', "trash_can.png")
+    trash_can.setAttribute('onclick', "remove_field(" + question_number + ")")
+    remove_button_container.appendChild(trash_can)
 
     // Nedre bar
     let term_container = document.createElement("div")
@@ -47,17 +47,21 @@ function add_field() {
     const input = document.createElement("input")
     input.type = "text"
     input.classList.add("question_input")
-    
+    question.appendChild(remove_button_container)
     question.appendChild(input)
     question.appendChild(input.cloneNode(true))
 
-    question_container.appendChild(trash_can)
+    
     question_container.appendChild(question);
 }
 
-function remove_field() {
+function remove_field(i) {
     if (question_container.children.length > 1) {
-        const element = question_container.lastChild
+        const element = question_container.children[i]
         element.remove()
+    }
+
+    for (let i = 0; i < question_container.children.length; i++){
+        question_container.children[i].firstChild.firstChild.innerHTML = i+1
     }
 }

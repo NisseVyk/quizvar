@@ -103,7 +103,23 @@ input:focus {
     transition-duration: 300ms;
 }
 
+.remove_button_container {
+    background-color: rgb(46, 56, 86);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
 .trash_can {
-    width: 300px;
-    height: 150px;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+}
+
+.siffra {
+    color: white;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
