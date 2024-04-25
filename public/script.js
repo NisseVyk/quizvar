@@ -44,12 +44,21 @@ function add_field() {
     let term_container = document.createElement("div")
     term_container.classList.add("term_container")
 
-    const input = document.createElement("input")
-    input.type = "text"
-    input.classList.add("question_input")
+    const term_input = document.createElement("input")
+    term_input.type = "text"
+    term_input.classList.add("term_input")
+    term_input.placeholder = "Enter term"
+
+    const definition_input = document.createElement("input")
+    definition_input.type = "text"
+    definition_input.classList.add("term_input")
+    definition_input.placeholder = "Enter definition"
+
+    term_container.appendChild(term_input)
+    term_container.appendChild(definition_input)
+
     question.appendChild(remove_button_container)
-    question.appendChild(input)
-    question.appendChild(input.cloneNode(true))
+    question.appendChild(term_container)
 
     
     question_container.appendChild(question);
