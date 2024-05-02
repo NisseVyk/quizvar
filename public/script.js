@@ -1,16 +1,25 @@
-const server = "http://10.0.216.26:3000"
+const server = "http://10.0.208.140:3000"
 const question_container = document.getElementById("question_container")
 
 window.onload = add_field()
 
 function createTable() {
+    let termlist = []
+    for(i=0; i<question_container.children.length; i++) {
+        let question = question_container.children[i].children[1]
+        if(question.firstChild.value || question.children[1].value){
+            let templist = [String(question.firstChild.value), String(question.children[1].value)]
+            termlist.push(templist)
+        }
+    }
+    console.log(termlist.length)
+    
     let xhr = new XMLHttpRequest();
     xhr.open("POST", `${server}/send` , true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    let u = [["penis"], ["2", "balls"]]
     xhr.send(JSON.stringify({
         table: document.getElementById("title").value,
-        name: u
+        term_list: termlist
     }));
     console.log("1")
 }

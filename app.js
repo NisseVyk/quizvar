@@ -34,8 +34,17 @@ app.listen(port, () => {
 app.post('/send', (req, res) => {
     db.serialize(() => {
       try{
-        db.run(`CREATE TABLE ${req.body["table"]} (id int not null, alt1 text not null, alt2 text not null)`);
-        db.run(`INSERT INTO ${req.body["table"]}(id, alt1, alt2) VALUES(1, ?, ?)`, [`${req.body["name"][0][0]}`, `${req.body["name"][1][1]}`]);
+        let quiz_name = req.body["table"]
+        db.run(`CREATE TABLE ${req.body["table"]} (term text not null, definition text not null)`);
+        /*db.each(`SELECT name FROM sqlite_master WHERE type=’table’;`, function(err, table) {
+          console.log(err)
+          console.log(table)
+        });*/
+        let term_list = req.body["term_list"]
+        for(i=0; i<term_list.length; i++){
+          db.run(`INSERT INTO ${req.body["table"]}(term, definition) VALUES(?, ?)`, [`${term_list[i][0]}`, `${term_list[i][1]}`]);
+        }
+        
       } catch (error) {
         console.log(error)
       }
