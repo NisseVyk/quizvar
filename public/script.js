@@ -1,4 +1,4 @@
-const server = "http://10.0.208.140:3000"
+const server = "http://10.0.95.197:3000"
 const question_container = document.getElementById("question_container")
 
 window.onload = add_field()

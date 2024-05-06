@@ -8,6 +8,8 @@ const port = 3000
 
 const table = "bollar"
 
+let quiz_list = []
+
 app.use(cors({ origin: true}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
@@ -32,22 +34,30 @@ app.listen(port, () => {
 })
 
 app.post('/send', (req, res) => {
-    db.serialize(() => {
-      try{
-        let quiz_name = req.body["table"]
-        db.run(`CREATE TABLE ${req.body["table"]} (term text not null, definition text not null)`);
-        /*db.each(`SELECT name FROM sqlite_master WHERE type=’table’;`, function(err, table) {
-          console.log(err)
-          console.log(table)
-        });*/
-        let term_list = req.body["term_list"]
-        for(i=0; i<term_list.length; i++){
-          db.run(`INSERT INTO ${req.body["table"]}(term, definition) VALUES(?, ?)`, [`${term_list[i][0]}`, `${term_list[i][1]}`]);
+    quiz_list = []
+    quiz = "quiz"
+    function get_tables(){
+      db.serialize(() => {
+        try{
+          
+          db.each(`SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name;`, function(err, table) {
+            quiz_list.push(table["name"])
+            console.log(quiz_list.length.toString())
+            return;
+          });
+        } catch (error) {
+          console.log(error)
         }
-        
-      } catch (error) {
-        console.log(error)
+    });}
+    async function after_table(){
+      await get_tables()
+      db.run(`CREATE TABLE ${quiz + quiz_list.length.toString()} (term text not null, definition text not null)`);
+
+      let quiz_name = req.body["table"]
+      let term_list = req.body["term_list"]
+      for(i=0; i<term_list.length; i++){
+        //db.run(`INSERT INTO ${req.body["table"]}(term, definition) VALUES(?, ?)`, [`${term_list[i][0]}`, `${term_list[i][1]}`]);
       }
-    });
+    }
     res.send('200')
   })
