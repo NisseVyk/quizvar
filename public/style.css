@@ -25,6 +25,8 @@ input:focus {
     outline: none;
 }
 
+/* ---------Create Quiz------------ */
+
 .info_container {
     display: flex;
     justify-content: space-between;
@@ -156,4 +158,25 @@ input:focus {
     color: rgb(255, 220, 98);
     border-color: rgb(255, 220, 98);
     transition-duration: 300ms;
+}
+
+/* ------------------Main page-------------------- */
+
+.quiz_list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quiz {
+    background-color: rgb(66, 85, 255);
+    border-radius: 0.5rem;
+    width: 100px;
+    height: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.quiz_name {
+    color: #ffff;
+    text-align: center;
 }

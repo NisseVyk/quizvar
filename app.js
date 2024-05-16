@@ -36,28 +36,49 @@ app.listen(port, () => {
 app.post('/send', (req, res) => {
     quiz_list = []
     quiz = "quiz"
-    function get_tables(){
-      db.serialize(() => {
         try{
-          
           db.each(`SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name;`, function(err, table) {
             quiz_list.push(table["name"])
-            console.log(quiz_list.length.toString())
             return;
           });
+          setTimeout(createTable, 1000)
         } catch (error) {
           console.log(error)
         }
-    });}
-    async function after_table(){
-      await get_tables()
-      db.run(`CREATE TABLE ${quiz + quiz_list.length.toString()} (term text not null, definition text not null)`);
+    
+      function createTable(){
+        db.run(`CREATE TABLE ${quiz + quiz_list.length.toString()} (name text not null, term text not null, definition text not null)`);
 
-      let quiz_name = req.body["table"]
-      let term_list = req.body["term_list"]
-      for(i=0; i<term_list.length; i++){
-        //db.run(`INSERT INTO ${req.body["table"]}(term, definition) VALUES(?, ?)`, [`${term_list[i][0]}`, `${term_list[i][1]}`]);
+        let quiz_name = req.body["table"]
+        let term_list = req.body["term_list"]
+        db.serialize(() => {
+          for(i=0; i<term_list.length; i++){
+            db.run(`INSERT INTO ${quiz + quiz_list.length.toString()}(name, term, definition) VALUES(?, ?, ?)`, [`${quiz_name}`, `${term_list[i][0]}`, `${term_list[i][1]}`]);
+          }
+        })
+        
       }
-    }
+      
+    
     res.send('200')
   })
+
+app.get('/tables', (req, res) => {
+  quiz_list = []
+  try{
+    db.each(`SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name;`, function(err, table) {
+      quiz_list.push(table["name"])
+      return;
+    });
+  } catch (error) {
+      console.log(error)
+    }
+  setTimeout(send, 1000)
+
+  
+  function send() {
+    console.log(quiz_list)
+    res.send(quiz_list)
+  }
+  
+})
