@@ -63,11 +63,18 @@ app.post('/send', (req, res) => {
     res.send('200')
   })
 
-app.get('/tables', (req, res) => {
+app.get('/list_tables', (req, res) => {
   quiz_list = []
+  quiz_list_names = []
+  both_lists = []
   try{
     db.each(`SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name;`, function(err, table) {
       quiz_list.push(table["name"])
+      
+      db.get(`SELECT name FROM ${table["name"]}`, (err, row)=>{
+        quiz_list_names.push(row["name"])
+      });
+
       return;
     });
   } catch (error) {
@@ -75,10 +82,25 @@ app.get('/tables', (req, res) => {
     }
   setTimeout(send, 1000)
 
-  
   function send() {
-    console.log(quiz_list)
-    res.send(quiz_list)
+    both_lists.push(quiz_list)
+    both_lists.push(quiz_list_names)
+    res.send(both_lists)
   }
-  
+})
+
+app.get('/get_table', (req, res) => {
+  let table_data = [[], []]
+  db.serialize(() => {
+    db.all(`SELECT * FROM ${req.query["table"]}`, [], (err, rows) => {
+      rows.forEach((row)=>{
+        table_data[0].push(row.term);
+        table_data[1].push(row.definition)
+     });
+    })
+  })
+  setTimeout(cum, 2000)
+  function cum() {
+   res.send(table_data)
+  }
 })

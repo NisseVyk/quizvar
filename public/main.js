@@ -1,27 +1,25 @@
-const server = "http://10.155.17.5:3000"
+const server = "http://10.0.237.3:3000"
 const quiz_list = document.getElementById("quiz_list")
-let active_quiz = ""
+let active_quiz = "10.0.237.3"
 
 window.onload = get_tables()
 
 function get_tables() {
     xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", `${server}/tables`, true);
+    xmlhttp.open("GET", `${server}/list_tables`, true);
 
     xmlhttp.onload = () => {
-        console.log("1")
         array = JSON.parse(xmlhttp.responseText);
-        console.log(array)
         for(i=0; i<array.length; i++) {
-            console.log("Penis")
             //Main div
             let quiz = document.createElement("div")
             quiz.classList.add("quiz")
+            quiz.setAttribute('onclick', `selected_quiz("${array[0][i]}")`)
 
             //Namn
             let name = document.createElement("p")
             name.classList.add("quiz_name")
-            name.innerHTML = array[i]
+            name.innerHTML = array[1][i]
 
             quiz.appendChild(name)
             quiz_list.appendChild(quiz)
@@ -30,3 +28,14 @@ function get_tables() {
     xmlhttp.send();
 }
 
+function selected_quiz(name) {
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", `${server}/get_table?table=${name}`, true);
+    
+    xmlhttp.onload = () => {
+        term_list = JSON.parse(xmlhttp.responseText);
+        localStorage.setItem("terms", term_list); //lägger båda listorna på rad utan uppdelning
+    }
+
+    xmlhttp.send();
+}
