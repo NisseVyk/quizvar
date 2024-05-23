@@ -1,6 +1,6 @@
-const server = "http://10.0.237.3:3000"
+const server = "http://10.0.90.26:3000"
 const quiz_list = document.getElementById("quiz_list")
-let active_quiz = "10.0.237.3"
+let active_quiz = ""
 
 window.onload = get_tables()
 
@@ -10,7 +10,7 @@ function get_tables() {
 
     xmlhttp.onload = () => {
         array = JSON.parse(xmlhttp.responseText);
-        for(i=0; i<array.length; i++) {
+        for(i=0; i<array[0].length; i++) {
             //Main div
             let quiz = document.createElement("div")
             quiz.classList.add("quiz")
@@ -20,6 +20,7 @@ function get_tables() {
             let name = document.createElement("p")
             name.classList.add("quiz_name")
             name.innerHTML = array[1][i]
+            //name.setAttribute('href', "study.html");
 
             quiz.appendChild(name)
             quiz_list.appendChild(quiz)
@@ -34,7 +35,10 @@ function selected_quiz(name) {
     
     xmlhttp.onload = () => {
         term_list = JSON.parse(xmlhttp.responseText);
-        localStorage.setItem("terms", term_list); //lägger båda listorna på rad utan uppdelning
+        localStorage.setItem("terms", term_list[0]); //lägger båda listorna på rad utan uppdelning
+        localStorage.setItem("definitions", term_list[1]);
+        console.log(term_list)
+        window.location.assign('study.html')
     }
 
     xmlhttp.send();

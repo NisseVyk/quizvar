@@ -70,7 +70,6 @@ app.get('/list_tables', (req, res) => {
   try{
     db.each(`SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name;`, function(err, table) {
       quiz_list.push(table["name"])
-      
       db.get(`SELECT name FROM ${table["name"]}`, (err, row)=>{
         quiz_list_names.push(row["name"])
       });

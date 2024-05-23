@@ -25,6 +25,12 @@ input:focus {
     outline: none;
 }
 
+/*-------------Navbar--------------*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* ---------Create Quiz------------ */
 
 .info_container {
@@ -172,6 +178,7 @@ input:focus {
     border-radius: 0.5rem;
     margin-left: 5px;
     margin-right: 5px;
+    
 }
 
 .quiz_name {
