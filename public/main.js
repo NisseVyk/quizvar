@@ -1,4 +1,4 @@
-const server = "http://10.0.90.26:3000"
+const server = "http://90.230.223.170:3000"
 const quiz_list = document.getElementById("quiz_list")
 let active_quiz = ""
 
@@ -35,8 +35,8 @@ function selected_quiz(name) {
     
     xmlhttp.onload = () => {
         term_list = JSON.parse(xmlhttp.responseText);
-        localStorage.setItem("terms", term_list[0]); //lägger båda listorna på rad utan uppdelning
-        localStorage.setItem("definitions", term_list[1]);
+        localStorage.setItem("terms", JSON.stringify(term_list[0])); //lägger båda listorna på rad utan uppdelning
+        localStorage.setItem("definitions", JSON.stringify(term_list[1]));
         console.log(term_list)
         window.location.assign('study.html')
     }

@@ -178,10 +178,41 @@ input:focus {
     border-radius: 0.5rem;
     margin-left: 5px;
     margin-right: 5px;
-    
+    cursor: pointer;
 }
 
 .quiz_name {
     color: #ffff;
     text-align: center;
+}
+
+/* ----------------Flashcards-------------------- */
+
+.flashcards_main {
+    display: flex;
+}
+
+.card {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+    background-color: rgb(66, 85, 255);
+    margin: 10px;
+    border-radius: 0.5rem;
+    transition-duration: 1s;
+}
+
+.card_flipped {
+    transition-duration: 1s;
+    transform: perspective(1000px) rotateX(180deg);
+}
+
+.term {
+    color: white;
+}
+
+.term_flipped {
+     transform: rotateX(180deg);
 }
