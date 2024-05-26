@@ -1,4 +1,4 @@
-const server = "http://10.0.90.26:3000"
+const server = "http://81.236.197.137:3000"
 const quiz_list = document.getElementById("quiz_list")
 let active_quiz = ""
 

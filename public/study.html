@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <script src="flashcards.js" defer></script>
 </head>
-<body>
+<body class="flashcards_body">
     <header class="navbar">
-        <div class="left">
+        <div class="navbar_left">
             <a class="create_button" href="index.html">HOME</a>
         </div>
-        <div class="right">
+        <div class="navbar_right">
             <a class="create_button" href="createTest.html">CREATE</a>
         </div>
     </header>
@@ -20,5 +20,9 @@
     <main class="flashcards_main" id="flashcards_main">
         
     </main>
+    <footer class="button_container">
+        <div class="arrow_container" onclick="change_card(-1)"><img src="arrow.png" alt="left_arrow" class="arrow_button left_arrow"></div>
+        <div class="arrow_container" onclick="change_card(1)"><img src="arrow.png" alt="right_arrow" class="arrow_button right_arrow"></div>
+    </footer>
 </body>
 </html>

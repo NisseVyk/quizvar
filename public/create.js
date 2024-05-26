@@ -1,8 +1,7 @@
-const server = "http://10.0.90.26:3000"
+const server = "http://81.236.197.137:3000"
 const question_container = document.getElementById("question_container")
 
 window.onload = add_field()
-
 
 function createTable() {
     let termlist = []
@@ -24,8 +23,6 @@ function createTable() {
     }));
     //console.log("1")
 }
-
-
 
 function add_field() {
 
@@ -72,7 +69,6 @@ function add_field() {
     question.appendChild(remove_button_container)
     question.appendChild(term_container)
 
-    
     question_container.appendChild(question);
 }
 
@@ -86,4 +82,3 @@ function remove_field(i) {
         question_container.children[i].firstChild.firstChild.innerHTML = i+1
     }
 }
-

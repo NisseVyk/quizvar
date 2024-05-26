@@ -187,32 +187,92 @@ input:focus {
 }
 
 /* ----------------Flashcards-------------------- */
+.flashcards_body {
+    overflow: hidden;
+}
 
 .flashcards_main {
-    display: flex;
+    display: inline;
 }
 
 .card {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    width: 200px;
-    height: 100px;
-    background-color: rgb(66, 85, 255);
-    margin: 10px;
+    position: absolute;
+    width: 800px;
+    height: 400px;
+    background-color: rgb(46, 56, 86);
     border-radius: 0.5rem;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
+    translate: 50%;
 }
 
 .card_flipped {
-    transition-duration: 1s;
+    transition-duration: 0.5s;
     transform: perspective(1000px) rotateX(180deg);
 }
 
 .term {
     color: white;
+    width: 100%;
+    text-align: center;
 }
 
 .term_flipped {
      transform: rotateX(180deg);
+}
+
+.left {
+    transition: 0.5s;
+    translate: -100%;
+    
+}
+
+.right {
+    transition-duration: 0.5s;
+    translate: 300%;
+    
+}
+
+.button_container {
+    position: absolute;
+    margin: auto;
+    bottom: 5%;
+    translate: 50%;
+    width: 800px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.arrow_container {
+    width: 60px;
+    height: 60px;
+    border: solid #586380 4px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.arrow_container:hover {
+    background-color: #2e3856;
+    transition-duration: 0.2s;
+}
+
+.arrow_button {
+    width: 70%;
+    height: 70%;
+    
+}
+
+.left_arrow {
+    transform: rotate(90deg);
+    margin-right: 10%;
+}
+
+.right_arrow {
+    transform: rotate(-90deg);
+    margin-left: 10%;
 }
